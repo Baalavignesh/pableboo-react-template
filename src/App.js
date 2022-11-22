@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes, Navigate } from "react-router-dom";
+import "./App.css";
+import HomePage from "./pages/home-page/home_page";
+import LoginPage from "./pages/login-page/login_page";
+import SignupPage from "./pages/signup-page/signup_page";
+import WelcomePage from "./pages/welcome-page/welcome_page";
+import NonPrivateRoute from "./routes/NonPrivateRoutes";
+import PrivateRoute from "./routes/PrivateRoutes";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route element={<PrivateRoute />}>
+        <Route path="/app" element={<HomePage />}></Route>
+      </Route>
+      <Route
+        path="/signup"
+        element={
+          <NonPrivateRoute>
+            <SignupPage />
+          </NonPrivateRoute>
+        }
+      ></Route>
+      <Route
+        path="/login"
+        element={
+          <NonPrivateRoute>
+            <LoginPage />
+          </NonPrivateRoute>
+        }
+      ></Route>
+      <Route
+        path="/"
+        element={
+          <NonPrivateRoute>
+            <WelcomePage />
+          </NonPrivateRoute>
+        }
+      ></Route>
+      <Route path="*" element={<Navigate to="/app" replace />} />
+    </Routes>
   );
 }
 
