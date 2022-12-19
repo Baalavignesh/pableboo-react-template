@@ -25,7 +25,7 @@ Simple template with basic packages and features implemented.
 Clone Git repo 
 
 ```bash
-  git clone "https://github.com/Baalavignesh/pable-react-template"
+  git clone "https://github.com/Baalavignesh/pableboo-react-template"
   cd pable-react-template
 ```
 
